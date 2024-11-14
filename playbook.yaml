@@ -1,0 +1,6 @@
+
+
+
+- import_playbook: playbook:1_nuc.yaml
+- import_playbook: playbook:2_zotac.yaml
+- import_playbook: playbook:3_docker.yaml

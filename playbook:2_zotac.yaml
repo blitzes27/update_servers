@@ -1,0 +1,25 @@
+# playbooks 1 nuc
+
+- name: proxmox
+  hosts: zotac
+  become: True
+
+  vars_files:
+    - vault.yaml
+    
+  vars:
+    ansible_user: "{{ user2 }}" 
+    ansible_become_pass: "{{ passw_zotac }}"
+
+
+  tasks:
+    - name: Update apt package cache
+      ansible.builtin.apt:
+        update_cache: yes
+      ignore_errors: True
+    
+    - name: Upgrade apt packages
+      ansible.builtin.apt:
+        upgrade: full
+        state: latest
+      ignore_errors: True

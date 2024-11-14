@@ -1,0 +1,12 @@
+ansible-vault create <filnamn>.yml
+
+ansible-vault encrypt <filnamn>.yml
+
+ansible-vault edit <filnamn>.yml
+
+
+ansible-playbook -i inventory.ini playbook.yaml --ask-vault-pass   
+
+ansible-galaxy collection install community.general
+
+openssl passwd -6
