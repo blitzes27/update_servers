@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 vault.yaml
 inventory.ini
+.DS_Store
