@@ -1,13 +1,7 @@
 - name: Docker
   hosts: docker_hosts
-  become: True
-
-  vars_files:
-    - vault.yaml
-
-  vars:
-    ansible_user: "{{ user3 }}"
-    ansible_become_pass: "{{ passw_docker }}"
+  become: true
+  gather_facts: true
 
 
   tasks:
@@ -15,13 +9,13 @@
     - name: Update apt package cache
       ansible.builtin.apt:
         update_cache: yes
-      ignore_errors: True
+      ignore_errors: true
     
     - name: Upgrade apt packages
       ansible.builtin.apt:
         upgrade: full
         state: latest
-      ignore_errors: True
+      ignore_errors: true
 
     - name: update and start docker compose
       community.docker.docker_compose_v2:
