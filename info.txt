@@ -5,7 +5,7 @@ ansible-vault encrypt <filnamn>.yml
 ansible-vault edit <filnamn>.yml
 
 
-ansible-playbook -i inventory.ini playbook.yaml --ask-vault-pass   
+ansible-playbook -f -20 -i inventory.ini playbook.yaml --ask-vault-pass   
 
 ansible-galaxy collection install community.general
 

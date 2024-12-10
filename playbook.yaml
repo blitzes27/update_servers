@@ -1,6 +1,36 @@
+# playbooks 1 nuc
+
+- name: Update Servers
+  hosts: all
+  become: true
+  gather_facts: true
+  strategy: free
 
 
+  tasks:
 
-- import_playbook: playbook:1_nuc.yaml
-- import_playbook: playbook:2_zotac.yaml
-- import_playbook: playbook:3_docker.yaml
+    - name: Update apt package cache
+      ansible.builtin.apt:
+        update_cache: yes
+      ignore_errors: true
+    
+    - name: Upgrade apt packages
+      ansible.builtin.apt:
+        upgrade: full
+        state: latest
+      ignore_errors: true
+
+    - name: update images and recreate containers
+      community.docker.docker_compose_v2:
+        project_src: /docker/appdata
+        pull: always
+        state: present
+        recreate: auto
+        remove_orphans: yes
+      when: inventory_hostname in groups['all_vm']
+
+
+    - name: Remove unused docker images
+      community.docker.docker_prune:
+        images: yes
+      when: inventory_hostname in groups['all_vm']
