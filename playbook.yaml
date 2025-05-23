@@ -25,7 +25,7 @@
         project_src: /docker/appdata
         pull: always
         state: present
-        recreate: auto
+        recreate: always
         remove_orphans: yes
       when: inventory_hostname in groups['all_vm']
 
