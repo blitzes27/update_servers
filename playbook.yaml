@@ -12,13 +12,13 @@
     - name: Update apt package cache
       ansible.builtin.apt:
         update_cache: yes
-      ignore_errors: true
+      #ignore_errors: true
     
     - name: Upgrade apt packages
       ansible.builtin.apt:
         upgrade: full
         state: latest
-      ignore_errors: true
+      #ignore_errors: true
 
     - name: update images and recreate containers
       community.docker.docker_compose_v2:
